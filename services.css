@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 2s linear;
+}
+.container-perso{
+    background: linear-gradient(45deg, rgba(247, 99, 40, 0.87), rgba(0, 4, 255, 0.582)); 
+    background : url(./Assets/Image/Serv.jpg);
+    padding: 15%;
+    padding-bottom: 30px;
+    background-size: cover;
+}
+
+.container-perso .heading{
+    text-align: center;
+    padding-bottom: 15px;
+    color: rgba(16, 16, 19, 0.582);
+    text-shadow: 0 5px 10px rgb(0, 0, 0, .2);
+    font-size: 50px;
+}
+.container-perso .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 15px;
+}
+.container-perso .box-container .box{
+    box-shadow: 0 5px 10px rgb(0, 0, 0, .2);
+    border-radius: 5px;
+    background: linear-gradient(45deg, rgba(201, 14, 86, 0.781), rgba(180, 15, 97, 0.781));
+    text-align: center;
+    padding: 30px 20px;
+}
+.container-perso .box-container .box img{
+    height: 80px;
+}
+.container-perso .box-container .box h3{
+    color: orange;
+    font-size: 22px;
+    padding: 10px 0;
+}
+.container-perso .box-container .box p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.8;
+}
+.container-perso .box-container .box:hover{
+    box-shadow: 0 10px 15px rgb(0, 0, 0, .3);
+    transform: scale(1.03);
+    transition: 0.2s;
+}
+@media(max-width:768px){
+    .container-perso{
+        padding: 20px;
+    }
+}

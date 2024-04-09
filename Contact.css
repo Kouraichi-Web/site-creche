@@ -1,0 +1,232 @@
+:root{
+    /* principal color est la color principale du site */
+    --principal-color : #ff9a17;
+    --secondary-color : #0091EA;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 2s linear;
+}
+p{
+    font-weight: 400;
+    color: #111;
+}
+
+header{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    padding: 20px 10px;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.5s;
+}
+
+header.sticky{
+    background: #ffffff;
+    padding: 10px 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.logo img{
+    width: 150px; 
+    height: auto;
+    display:block; 
+    margin-right: 700px;
+}
+
+.btn{
+    border-radius: 25px;
+}
+.btn-inscrit{
+    padding: 10px 20px;
+    background: var(--secondary-color);
+    margin-top: -10px;
+    text-transform: uppercase;
+    border-radius: 25px;
+}
+
+.btn-inscrit:hover{
+    background: #17bdff;
+    transition: ease-out;
+}
+
+header .navbar li a:hover{
+    padding-bottom: 5px;
+    border-bottom: 5px solid var(--secondary-color);
+    transition-duration: 0.2s;
+}
+
+.darken-bg{
+    padding: 50px 100px;
+}
+
+.contact
+{
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background:url(./Assets/Image/contact.jpg);
+    background-size: cover;
+}
+
+.contact .content
+{
+    max-width: 800px;
+    text-align: center;
+    margin-top: 30px;
+}
+.contact .content h2
+{
+    font-size: 36px;
+    font-weight: 500;
+}
+.contact .content h2
+{
+    font-weight: 300;
+    color:rgba(0, 0, 0, 0.582);
+    text-align: center;
+}
+
+.container-perso
+{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 50px;
+}
+.container .contactInfo
+{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.container .contactInfo .box
+{
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.container .contactInfo .box .icon
+{
+    min-width: 60px;
+    height: 60px;
+    background: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.box .text p:nth-child(2){
+    color: #ffff;
+    font-size: 1.2em;
+}
+
+.container .contactInfo .box .text
+{
+   display: flex;
+   margin-left: 40px;
+   font-size: 18px;
+   color: #fff;
+   flex-direction: column;
+   font-weight: 700; 
+}
+.container .contactInfo .box .text h3
+{
+    font-weight: 400;
+    color : #18FFFF
+}
+.contactForm
+{
+    width: 40%;
+    padding: 40px;
+    background: #fff;
+}
+.contactForm h2
+{
+    font-size: 30px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+.contactForm .inputBox
+{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+.contactForm .inputBox input,
+.contactForm .inputBox textarea
+{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+}
+.contactForm .inputBox span
+{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span
+{
+    color: var(--principal-color);
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+.contactForm .inputBox input[type="submit"]
+{
+    width: 100px;
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+    cursor: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+.btn_envoi_mail{
+    cursor: pointer;
+}
+/* 
+.footer{
+    padding: 20px 40px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+.footer p:nth-child(1){
+    color: #333;
+}
+.footer a {
+    color: #fb911f;
+    text-decoration: none;
+    font-weight: 600;
+    font-style: italic;
+} */
