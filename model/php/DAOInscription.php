@@ -13,15 +13,17 @@ if(isset($_POST['INSERT_INFO_ENF'])) {
     $adress_parent = $_POST["adress_parent"];
     $cin_parent = $_POST["cin_parent"];
     $contact_parent = $_POST["contact_parent"];
+    $adress_parent = $_POST["adress_parent"];
 
     $connection->beginTransaction();
 
-    $request_parent = $connection->prepare("INSERT INTO `parent`( `nom_parent`, `cin_parent`, `nombre_enf`, `tel_parent`) VALUES (:nom_parent,:cin_parent, :nombre_enf, :tel_parent)");
+    $request_parent = $connection->prepare("INSERT INTO `parent`( `nom_parent`, `cin_parent`, `nombre_enf`,`adress_parent`, `tel_parent`) VALUES (:nom_parent,:cin_parent, :nombre_enf, :adress_parent, :tel_parent)");
 
     $request_parent->bindParam(":nom_parent",$nom_parent);
     $request_parent->bindParam(":cin_parent",$cin_parent);
     $request_parent->bindParam(":tel_parent",$contact_parent);
     $request_parent->bindParam(":nombre_enf",$nombre_enf);
+    $request_parent->bindParam(":adress_parent",$adress_parent);
     $request_parent->execute();
     $id_parent_inserted = $connection->lastInsertId();
     foreach ($listes_enfants as $liste_enfant){

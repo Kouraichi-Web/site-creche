@@ -19,8 +19,8 @@ var load_liste_membre = ()=>{
             <td>${result.tel_parent}</td>
             <td>${result.nombre_enf}</td>
             <td>
-              <button class="rounded-circle btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button> 
-              <button class="rounded-circle btn btn-sm btn-danger"> <i class="fa fa-trash"></i></button>
+              <button class="rounded-circle btn btn-sm btn-warning btn_edit_membre" data-id="${result.id_parent}" data-nom="${result.nom_parent}"> <i class="fa fa-edit"></i></button> 
+              <button class="rounded-circle btn btn-sm btn-danger btn_rmv_membre" data-id="${result.id_parent}" data-nom="${result.nom_parent}"> <i class="fa fa-trash"></i></button>
               <button class="rounded-circle btn btn-sm btn-info info_membre" data-id="${result.id_parent}" data-toggle="tooltip" data-placement="top" title="Info enfant"> <i class="fa-solid fa-info"></i></button>
           </td>
           </tr>`;
@@ -90,4 +90,126 @@ $(function(){
         });
     })
     
+    $(document).on("click",".btn_edit_membre",function(){
+       var id_parent = $(this).data('id')
+       var nom = $(this).data('nom')
+       
+       $.confirm({
+        columnClass : 'large' ,
+        title: `Modifier l'information de ${nom}`,
+        content: `<div class="form-group">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-3">
+                <!-- Input type text -->
+                <label for="nom_parent" class="form-label required">Nom parent</label>
+                <input type="text" class="form-control form-control-sm" name="nom_parent" id="nom_parent">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <!-- Input type text -->
+                <label for="adress_parent" class="form-label required">Adresse</label>
+                <input type="text" class="form-control form-control-sm" name="adress_parent" id="adress_parent">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <!-- Input type text -->
+                <label for="cin_parent" class="form-label required">CIN</label>
+                <input type="number" class="form-control form-control-sm" name="cin_parent" id="cin_parent">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <!-- Input type text -->
+                <label for="contact_parent" class="form-label required">Contact</label>
+                <input type="number" class="form-control form-control-sm" name="contact_parent" id="contact_parent">
+            </div>
+        </div>
+    </div>`,
+        buttons: {
+            formSubmit: {
+                text: 'Modifier',
+                btnClass: 'btn-blue',
+                action: function () {
+                    var nom = $("#nom_parent").val()
+                    var cin_parent = $("#cin_parent").val()
+                    var contact = $("#contact_parent").val()
+                    var adress = $("#adress_parent").val()
+
+                    $.ajax({
+                        url: URLListe,
+                        method: 'post',
+                        data: { EDIT_MEMBRE: "EDIT_MEMBRE",nom,cin_parent,contact,adress, id_parent },
+                    success: function(results){
+                        if(results.indexOf('success')>-1){
+                            $.alert({
+                                title: 'Success',
+                                type:'green',
+                                content: 'Modification reussit',
+                            });
+                        }else{
+                            $.alert({
+                                title: 'Erreur',
+                                type:'red',
+                                content: 'Modification reussit',
+                            });
+                        }
+                      }});
+                }
+            },
+            cancel: function () {
+                //close
+            },
+        },
+        onContentReady: function () {
+            // bind to events
+            var jc = this;
+            this.$content.find('form').on('submit', function (e) {
+                // if the user submits the form by pressing enter in the field.
+                e.preventDefault();
+                jc.$$formSubmit.trigger('click'); // reference the button and click it
+            });
+        },
+        onOpenBefore: function (){
+            $.ajax({
+                url: URLListe,
+                method: 'post',
+                dataType:"json",
+                data: { SELECT_MEMBRE: "SELECT_MEMBRE", id_parent },
+            success: function(results){
+                console.log(results);
+                $("#nom_parent").val(results[0].nom_parent)
+                $("#cin_parent").val(results[0].cin_parent)
+                $("#contact_parent").val(results[0].tel_parent)
+                $("#adress_parent").val(results[0].adress_parent)
+                
+              }});
+        }
+    });
+    //    champs pour la modification des informations du parents
+
+    
+    })
+
+    $(document).on("click",".btn_rmv_membre",function(){
+
+        var id_parent = $(this).data('id')
+        var nom = $(this).data('nom')
+        
+        $.confirm({
+            title: `Supprimer ${nom}`,
+            content: `Etes-vous sûr de vouloir supprimer ${nom}`,
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                tryAgain: {
+                    text: 'Supprimer',
+                    btnClass: 'btn-red',
+                    action: function(){
+                        
+                    }
+                },
+                Non: function () {
+                }
+            }
+        });
+    })
 })
